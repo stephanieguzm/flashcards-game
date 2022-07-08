@@ -13,16 +13,20 @@ class Turn {
     }
 
     evaluateGuess() {
-        return this.guess === this.currentCard.correctAnswer
+        // console.log(this.currentCard.correctAnswer)
+        if (this.guess === this.currentCard.correctAnswer) {
+            return true;
+        } else {
+            return false
+        }
     }
 
     giveFeedback() {
-        if (this.guess === this.currentCard.correctAnswer) {
+        if (this.evaluateGuess() === true) {
             return `correct!`
-        } else {
+        } else if (this.evaluateGuess() === false) {
             return `incorrect!`
         }
-
     }
 };
 
