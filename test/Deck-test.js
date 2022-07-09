@@ -16,19 +16,19 @@ describe('Deck', function () {
         deck = new Deck([card1, card2, card3]);
     })
 
-    it('should be a function', function () {
+    it.skip('should be a function', function () {
         expect(Deck).to.be.a('function');
     });
     
-    it(`should be an instance of Deck with a series of cards`, function () {
+    it.skip(`should be an instance of Deck with a series of cards`, function () {
         expect(deck).to.be.an.instanceof(Deck);
     });
     
-    it('should be an array of cards', function () {
+    it.skip('should be an array of cards', function () {
         expect(deck.cards).to.be.an('array');
     });
     
-    it('should know how many cards are in the deck', function() {
+    it.skip('should know how many cards are in the deck', function() {
         deck.countCards();
         expect(deck.cards).to.have.lengthOf(3);
     });
