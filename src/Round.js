@@ -6,7 +6,6 @@ class Round {
         this.turns = 0;
         this.incorrectGuesses = [];
         this.currentCard = this.deck[0]
-        // console.log(this.currentCard)
     }
 
     returnCurrentCard() {
@@ -14,13 +13,14 @@ class Round {
     }
 
     takeTurn(guess) {
-        let turn = new Turn(guess, this.CurrentCard)
+        let turn = new Turn(guess, this.currentCard)
         this.turns++
         if (!turn.evaluateGuess()) {
             this.incorrectGuesses.push(this.currentCard.id)
         }
         this.deck.shift()
     }
+    
 };
 
 module.exports = Round;

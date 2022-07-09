@@ -10,6 +10,7 @@ describe('Round', function () {
     let card2;
     let card3;
     let turn;
+    let turn2;
     let deck;
     let round;
     beforeEach(() => {
@@ -18,83 +19,71 @@ describe('Round', function () {
         card3 = new Card(3, 'What type of prototype method directly modifies the existing array?', ['mutator method', 'accessor method', 'iteration method'], 'mutator method')
         deck = new Deck([card1, card2, card3]);
         turn = new Turn('object', card1)
+        turn2 = new Turn('array', card1)
         round = new Round(deck);
     })
 
-    it('should be a function', function () {
+    it.skip('should be a function', function () {
         expect(Round).to.be.a('function');
     });
 
-    it(`should be an instance of Round`, function () {
+    it.skip(`should be an instance of Round`, function () {
         expect(round).to.be.an.instanceof(Round);
     }); 
 
-// Your Round class will be the object that takes in responses 
-// and records these guesses(as well as if they are correct or incorrect). 
-// The currentCard should be the first Card in the Deck(the array of Cards) 
-// at the start of the Round
-
-    it('should start with a new deck of cards starting with the current card', function () {
+    it.skip('should start with a new deck of cards starting with the current card', function () {
         let currentCard = round.CurrentCard;
 
         expect(deck).to.be.an.instanceOf(Deck);
         expect(currentCard).to.equal(deck.card1)
     }); 
 
-    it('should start with no turns', function () {
+    it.skip('should start with no turns', function () {
         expect(round.turns).to.equal(0);
     });
 
-    it(`should start with an empty array to store the ids of incorrect guesses`, function () {
+    it.skip(`should start with an empty array to store the ids of incorrect guesses`, function () {
         expect(round.incorrectGuesses).to.deep.equal([]);
     });
+
+
     
-    it(`should evaluate whether the player's guess is true`, function () {
+    it.skip(`should evaluate whether the player's guess is true`, function () {
         // expect(turn).to.be.an.instanceOf(Turn);
         expect(turn.evaluateGuess()).to.equal(true)
         expect(turn.giveFeedback()).to.equal(`correct!`)
     });
 
-    it(`should evaluate whether the player's guess is false`, function () {
-        let turn2 = new Turn('array', card1)
+    it.skip(`should evaluate whether the player's guess is false`, function () {
         expect(turn2).to.be.an.instanceOf(Turn);
         expect(turn2.evaluateGuess()).to.equal(false)
         expect(turn2.giveFeedback()).to.equal(`incorrect!`)
         // console.log(turn2)
     });
     
-    it('should count each turn', function () {
+    it.skip('should count each turn', function () {
         expect(round.turns).to.equal(0);
         round.takeTurn();
         expect(round.turns).to.equal(1);
     });
 
-    it('should store the ids of incorrect guesses', function () {
+    it.skip('should store the ids of incorrect guesses', function () {
         round.takeTurn();
+        expect(turn2).to.be.an.instanceOf(Turn);
+        expect(turn2.evaluateGuess()).to.equal(false)
+        expect(round.incorrectGuesses).to.deep.equal([1])
         expect(round.deck).to.have.lengthOf(2)
     });
 
+    it.skip('should return the percentage of correct guesses', function () {
+        const percentCorrect = round.calculatePercentCorrect();
+
+        round.takeTurn();
+        expect(round.turns).to.equal(1)
+        expect(turn2.evaluateGuess()).to.equal(false)
+        expect(round.incorrectGuesses).to.deep.equal([1])
+        expect(percentCorrect).to.equal('33.34%')
+
+    });
 });
     
-    //methods:
-    // takeTurn()
-    // calculatePercentCorrect()
-    // endRound()
-/*
-Your Round class should meet the following requirements:
--takeTurn: method that updates Turns count, evaluates guesses, gives 
-feedback, and stores ids of incorrect guesses
--When a guess is made, a new Turn instance is created.
--The turns count is updated, regardless of whether the guess is 
-correct or incorrect
--The next card becomes current card
--Guess is evaluated/recorded. Incorrect guesses will be stored 
-(via the id) in an array of incorrectGuesses
--Feedback is returned regarding whether the guess is incorrect 
-or correct
--calculatePercentCorrect: method that calculates and returns the 
-percentage of correct guesses
--endRound: method that prints the following to the console: 
-‘** Round over! ** You answered <>% of the questions correctly!’
--returnCurrentCard: method that returns the current card being played
-*/
