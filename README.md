@@ -15,4 +15,6 @@ Once you have cloned the repo, change into the `flashcards-game` directory and i
 To verify that it is setup correctly, run `npm test` in your terminal. You should have 4 pending test files that show up.
 
 ## Technologies Used
-Javascript
+* Javascript
+* Mocha
+* Chai
